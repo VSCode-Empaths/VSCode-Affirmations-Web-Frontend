@@ -23,8 +23,8 @@ addAffirmationForm.addEventListener('submit', async (e) => {
     submitButton.disabled = true;
 
     const formData = new FormData(addAffirmationForm);
-    const text = formData.get('affirmation-text');
-    const category = formData.get('category-type');
+    const text = formData.get('text');
+    const category = formData.get('category');
 
     const response = await createAffirmation(text, category);
     affirmations.unshift(response);
