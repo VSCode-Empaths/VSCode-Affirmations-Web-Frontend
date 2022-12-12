@@ -1,0 +1,35 @@
+.title {
+    text-align: center;
+}
+
+.header-logo {
+    max-width: 5%;
+}
+
+#add-affirmation-form {
+    display: grid;
+    justify-self: center;
+    width: 400px;
+    background-color: rgb(251, 231, 231);
+}
+
+input[type='text'] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid rgb(249, 159, 159);
+    border-radius: 4px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    border: 5px solid rgb(255, 240, 249);
+    border-radius: 5px;
+}
+
+ul li {
+    padding: 8px 16px;
+    background-color: rgb(244, 237, 228);
+}
