@@ -1,6 +1,6 @@
 :root {
     --background: rgb(245, 212, 212);
-    --background: rgb(0, 0, 0);
+    /* --background: rgb(0, 0, 0); */
     --header-background: rgb(197, 172, 172);
     --text-color: rgb(7, 5, 68);
     --label-color: rgb(75, 102, 98);
@@ -14,12 +14,18 @@ body {
     height: 100vh;
     font-family: var(--primary-font);
     color: var(--text-color);
-    background: var(--background);
+    /* background: var(--background); */
+    background-image: linear-gradient(
+        to right,
+        rgb(255, 236, 236),
+        rgb(255, 186, 186),
+        rgb(255, 236, 236)
+    );
     display: grid;
     grid-template-rows: auto 1fr;
     margin: auto;
-    width: 70%;
-    border: 1px solid black;
+    /* width: 70%; */
+    /* border: 1px solid black; */
 }
 
 .page-header {
@@ -41,7 +47,6 @@ body {
 
 .page-header .logo {
     height: 100%;
-    border: 3px solid rgb(255, 202, 202);
     width: 100px;
 }
 
@@ -52,10 +57,11 @@ body {
     font-family: monospace;
 }
 
-.page-header nav {
+/* .page-header nav {
     display: flex;
     gap: 10px;
-}
+    height: 100px;
+} */
 
 main {
     padding: 20px;

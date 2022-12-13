@@ -31,13 +31,9 @@
 
     <body>
         <header class="page-header">
-            <img class="logo" src="./assets/affirmation-logo.png" />
+            <img class="logo" src="./assets/affirmation-logo-black.png" />
             <p class="title">Error Affirmations</p>
-
-            <nav>
-                <a href="/">Home</a>
-                <a id="sign-out-link" href="auth">Sign Out</a>
-            </nav>
+            <img class="logo" src="./assets/affirmation-logo-black.png" />
         </header>
         <nav>
             <div id="menu">
@@ -47,7 +43,6 @@
                 <span></span>
                 <ul id="menu-list">
                     <a href="/">Add an Affirmation</a>
-                    <a id="sign-out-link" href="auth">Sign Out</a>
                 </ul>
             </div>
         </nav>
@@ -55,7 +50,14 @@
             <form id="add-affirmation-form">
                 <h2>Add an Affirmation</h2>
                 <label class="label">Affirmation</label>
-                <textarea required maxlength="255" name="text" required id="affirmation-text">
+                <textarea
+                    minlength="10"
+                    maxlength="255"
+                    required
+                    name="text"
+                    id="affirmation-text"
+                    placeholder="Enter your affirmation here..."
+                >
                 </textarea>
                 <label class="label">Category</label>
                 <select id="category-type" name="'category">
