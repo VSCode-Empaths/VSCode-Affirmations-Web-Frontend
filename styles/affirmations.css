@@ -122,3 +122,7 @@ p {
     margin: 5px 0px;
     font-weight: bold;
 }
+
+h2 {
+    text-align: center;
+}
