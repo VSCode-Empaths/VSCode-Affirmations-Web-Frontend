@@ -11,7 +11,7 @@
     justify-self: center;
     width: 400px;
     background-color: rgb(251, 231, 231);
-    border: 1px solid rgb(249, 159, 159);
+    border: 3px solid rgb(249, 159, 159);
     padding: 1rem;
     margin: 1rem auto;
     box-shadow: 0px 0px 15px 0px white;
@@ -28,7 +28,7 @@ input[type='text'] {
 
 ul {
     list-style-type: none;
-    padding: 0;
+    padding: 20px;
     border: 5px solid rgb(255, 240, 249);
     border-radius: 5px;
     width: 70%;
@@ -36,15 +36,23 @@ ul {
     display: grid;
     justify-content: center;
     grid-template-columns: 1fr 4fr 1fr;
+    box-shadow: 0px 0px 15px 0px white;
 }
 
 ul li {
-    padding: 8px 16px;
+    padding: 8px 45px;
+
     background-color: rgb(244, 237, 228);
     display: grid;
     justify-content: center;
     grid-column-start: 1;
     grid-column-end: 6;
+    font-size: 2rem;
+    border: 1px solid rgb(249, 159, 159);
+    margin: 5px;
+    border-radius: 1rem;
+    transform: skew(-10deg);
+    box-shadow: 2px 2px 5px 0px black;
 }
 
 #submit-button {
@@ -52,6 +60,7 @@ ul li {
     cursor: pointer;
     transition: 250ms;
     background-color: rgb(249, 159, 159);
+    border: 1px solid black;
 }
 
 #submit-button:hover {
@@ -65,6 +74,7 @@ ul li {
 #submit-button:active {
     transform: scale(0.97);
     transition: 250ms;
+    box-shadow: 0px 0px 0px 0px black;
 }
 
 #category-type {
@@ -78,4 +88,25 @@ option {
 
 a {
     text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+a:hover {
+    text-shadow: 0px 0px 5px rgb(249, 159, 159);
+    transition: 250ms;
+}
+
+main {
+    background-color: rgb(245, 212, 212);
+}
+
+p {
+    margin: 0px;
+}
+
+.label {
+    margin: 5px 0px;
+    font-weight: bold;
 }

@@ -1,5 +1,6 @@
 :root {
     --background: rgb(245, 212, 212);
+    --background: rgb(0, 0, 0);
     --header-background: rgb(197, 172, 172);
     --text-color: rgb(7, 5, 68);
     --label-color: rgb(75, 102, 98);
@@ -16,13 +17,16 @@ body {
     background: var(--background);
     display: grid;
     grid-template-rows: auto 1fr;
+    margin: auto;
+    width: 70%;
+    border: 1px solid black;
 }
 
 .page-header {
     position: sticky;
     top: 0;
     padding: 15px;
-    height: 80px;
+    height: 130px;
 
     display: flex;
     align-items: center;
@@ -32,14 +36,17 @@ body {
     background-color: rgb(244, 237, 228);
     /* abox-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); */
     border-bottom: 3px solid rgb(255, 202, 202);
+    z-index: 1;
 }
 
 .page-header .logo {
     height: 100%;
+    border: 3px solid rgb(255, 202, 202);
+    width: 100px;
 }
 
 .page-header .title {
-    font-size: 1.3em;
+    font-size: 2em;
     font-weight: 800;
     flex-grow: 2;
 }
