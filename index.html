@@ -31,7 +31,13 @@
 
     <body>
         <header class="page-header">
-            <p class="title">💓 Error Affirmations 💓</p>
+            <img class="logo" src="./assets/affirmation-logo.png" />
+            <p class="title">Error Affirmations</p>
+
+            <nav>
+                <a href="/">Home</a>
+                <a id="sign-out-link" href="auth">Sign Out</a>
+            </nav>
         </header>
         <nav>
             <div id="menu">
@@ -47,11 +53,12 @@
         </nav>
         <main>
             <form id="add-affirmation-form">
-                <h2 id="form-title">Add an Affirmation</h2>
-                <label>Affirmation</label>
-                <input required maxlength="255" type="text" name="text" id="affirmation-text" />
-                <label>Category</label>
-                <select id="category-type" name="category">
+                <h2>Add an Affirmation</h2>
+                <label class="label">Affirmation</label>
+                <textarea required maxlength="255" name="text" required id="affirmation-text">
+                </textarea>
+                <label class="label">Category</label>
+                <select id="category-type" name="'category">
                     <option>Daily</option>
                     <option>Error</option>
                     <option>TDD</option>
