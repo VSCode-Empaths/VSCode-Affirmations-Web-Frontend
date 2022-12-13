@@ -2,8 +2,26 @@
     text-align: center;
 }
 
-.header-logo {
-    max-width: 5%;
+#form-title {
+    text-align: center;
+    font-size: 20px;
+}
+
+#category-options {
+    display: grid;
+    grid-template-columns: 1fr 0.3fr;
+    gap: 2px;
+    padding-top: 5px;
+}
+
+.page-header {
+    text-align: center;
+}
+
+select {
+    border: 1px solid rgb(249, 159, 159);
+    border-radius: 4px;
+    background-color: rgb(255, 249, 254);
 }
 
 #add-affirmation-form {
@@ -11,6 +29,10 @@
     justify-self: center;
     width: 400px;
     background-color: rgb(251, 231, 231);
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 2px solid rgb(249, 159, 159);
+    border-radius: 4px;
 }
 
 input[type='text'] {
@@ -18,18 +40,29 @@ input[type='text'] {
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
-    border: 2px solid rgb(249, 159, 159);
+    border: 1px solid rgb(249, 159, 159);
     border-radius: 4px;
+    background-color: rgb(255, 249, 254);
 }
 
 ul {
     list-style-type: none;
     padding: 0;
-    border: 5px solid rgb(255, 240, 249);
-    border-radius: 5px;
 }
 
 ul li {
     padding: 8px 16px;
-    background-color: rgb(244, 237, 228);
+    background-color: rgb(255, 249, 254);
+    border: 2px solid rgb(249, 159, 159);
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+nav {
+    text-decoration: none;
+    color: initial;
+}
+
+main {
+    display: grid;
 }

@@ -25,22 +25,29 @@
         <link rel="stylesheet" href="/styles/reset.css" />
         <link rel="stylesheet" href="/styles/global.css" />
         <link rel="stylesheet" href="/styles/affirmations.css" />
+        <link rel="stylesheet" href="/styles/nav.css" />
         <!-- add link for page specific css -->
     </head>
 
     <body>
         <header class="page-header">
-            <p class="title">Error Affirmations</p>
-
-            <nav>
-                <a href="/">Home</a>
-                <a id="sign-out-link" href="auth">Sign Out</a>
-            </nav>
+            <p class="title">💓 Error Affirmations 💓</p>
         </header>
-
+        <nav>
+            <div id="menu">
+                <input type="checkbox" />
+                <span></span>
+                <span></span>
+                <span></span>
+                <ul id="menu-list">
+                    <a href="/">Add an Affirmation</a>
+                    <a id="sign-out-link" href="auth">Sign Out</a>
+                </ul>
+            </div>
+        </nav>
         <main>
             <form id="add-affirmation-form">
-                <h2>Add an Affirmation</h2>
+                <h2 id="form-title">Add an Affirmation</h2>
                 <label>Affirmation</label>
                 <input required maxlength="255" type="text" name="text" id="affirmation-text" />
                 <label>Category</label>
