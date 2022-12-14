@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:7890';
+const BASE_URL = 'https://error-affirmations.herokuapp.com';
 
 /* Auth related functions */
 export async function getUser() {
