@@ -1,48 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <!-- metadata -->
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-<head>
-    <!-- metadata -->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <!-- title and favicon -->
+        <title>Error Affirmations</title>
+        <link rel="icon" type="image/x-icon" href="assets/affirmation-logo.png" />
 
-    <!-- title and favicon -->
-    <title>Supabase Web App</title>
-    <link rel="icon" type="image/x-icon" href="/assets/alchemy-favicon.png" />
+        <!-- js -->
+        <script type="module" src="app.js"></script>
 
-    <!-- js -->
-    <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@1.35.7/dist/umd/supabase.min.js"></script>
-    <script type="module" src="app.js"></script>
+        <!-- fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Lobster&display=swap"
+            rel="stylesheet"
+        />
 
-    <!-- fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;600&family=Titillium+Web:wght@200;400;600&display=swap">
+        <!-- css -->
+        <link rel="stylesheet" href="/styles/reset.css" />
+        <link rel="stylesheet" href="/styles/global.css" />
+        <link rel="stylesheet" href="/styles/affirmations.css" />
+        <link rel="stylesheet" href="/styles/nav.css" />
+        <!-- add link for page specific css -->
+    </head>
 
-
-    <!-- css -->
-    <link rel="stylesheet" href="/styles/reset.css" />
-    <link rel="stylesheet" href="/styles/global.css" />
-    <!-- add link for page specific css -->
-
-</head>
-
-<body>
-    <header class="page-header">
-        <img class="logo" src="/assets/html_css_js.png" alt="logo">
-        <p class="title">Supabase Web App</p>
+    <body>
+        <header class="page-header">
+            <img class="logo" src="./assets/affirmation-logo-black.png" />
+            <p class="title">Error Affirmations</p>
+            <img class="logo" src="./assets/affirmation-logo-black.png" />
+        </header>
         <nav>
-            <a href="/">Home</a>
-            <a id="sign-out-link" href="auth">Sign Out</a>
+            <div id="menu">
+                <input id="checkbox" type="checkbox" />
+                <span></span>
+                <span></span>
+                <span></span>
+                <ul id="menu-list">
+                    <a href="/">Add an Affirmation</a>
+                    <a href="/creator-page">About the Creators</a>
+                </ul>
+            </div>
         </nav>
-    </header>
+        <main>
+            <form id="add-affirmation-form">
+                <h2>Add an Affirmation</h2>
+                <label class="label">Affirmation</label>
+                <textarea
+                    minlength="10"
+                    maxlength="255"
+                    required
+                    name="text"
+                    id="affirmation-text"
+                    placeholder="Enter your affirmation here..."
+                >
+                </textarea>
+                <label class="label">Category</label>
+                <select id="category-type" name="'category">
+                    <option>Daily</option>
+                    <option>Error</option>
+                    <option>TDD</option>
+                    <option>Will to go on</option>
+                </select>
+                <button id="submit-button">Submit</button>
+            </form>
 
-    <main>
+            <ul id="affirmation-list"></ul>
 
-    </main>
-
-</body>
-
+            <p id="error-display"></p>
+        </main>
+    </body>
 </html>

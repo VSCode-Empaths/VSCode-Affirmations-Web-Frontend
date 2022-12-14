@@ -1,11 +1,10 @@
 :root {
-    --background: rgb(224, 234, 247);
-    --header-background: white;
+    --background: rgb(245, 212, 212);
+    /* --background: rgb(0, 0, 0); */
+    --header-background: rgb(197, 172, 172);
     --text-color: rgb(7, 5, 68);
     --label-color: rgb(75, 102, 98);
     --placeholder-color: rgb(136, 136, 153);
-    --offset-color: rgb(217, 236, 217);
-    --action-color: rgb(77, 132, 252);
 
     --primary-font: 'Rubik', Corbel, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans',
         'DejaVu Sans', 'Bitstream Vera Sans', 'Liberation Sans', Verdana, 'Verdana Ref', sans-serif;
@@ -15,39 +14,54 @@ body {
     height: 100vh;
     font-family: var(--primary-font);
     color: var(--text-color);
-    background: var(--background);
+    /* background: var(--background); */
+    background-image: linear-gradient(
+        to right,
+        rgb(255, 236, 236),
+        rgb(255, 186, 186),
+        rgb(255, 236, 236)
+    );
     display: grid;
     grid-template-rows: auto 1fr;
+    margin: auto;
+    /* width: 70%; */
+    /* border: 1px solid black; */
 }
 
 .page-header {
     position: sticky;
     top: 0;
     padding: 15px;
-    height: 80px;
+    height: 130px;
 
     display: flex;
     align-items: center;
     gap: 10px;
 
-    background-color: var(--header-background);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    /* background-color: var(--header-background);*/
+    background-color: rgb(255, 240, 240);
+    /* abox-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); */
+    border-bottom: 3px solid rgb(255, 202, 202);
+    z-index: 1;
 }
 
 .page-header .logo {
     height: 100%;
+    width: 100px;
 }
 
 .page-header .title {
-    font-size: 1.3em;
+    font-size: 3em;
     font-weight: 800;
     flex-grow: 2;
+    font-family: monospace;
 }
 
-.page-header nav {
+/* .page-header nav {
     display: flex;
     gap: 10px;
-}
+    height: 100px;
+} */
 
 main {
     padding: 20px;
