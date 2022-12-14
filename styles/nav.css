@@ -1,11 +1,9 @@
 #menu {
-    display: block;
+    display: inline-block;
     position: relative;
     top: 100px;
     left: 50px;
-
     z-index: 1;
-
     -webkit-user-select: none;
     user-select: none;
 }
