@@ -15,6 +15,7 @@ export async function getUser() {
         return user;
     }
 }
+
 export async function signUpUser(email, password) {
     const resp = await fetch(`${BASE_URL}/api/v1/users`, {
         method: 'POST',
@@ -25,6 +26,7 @@ export async function signUpUser(email, password) {
         body: JSON.stringify({ email, password }),
         credentials: 'include',
     });
+
     const data = await resp.json();
     if (!resp.ok) {
         // eslint-disable-next-line no-console
