@@ -1,0 +1,25 @@
+.auth-button {
+    margin-top: 5px;
+    cursor: pointer;
+    transition: 250ms;
+    background-color: rgb(249, 159, 159);
+    border: 1px solid black;
+}
+
+.auth-button:hover {
+    transition: 250ms;
+    background-color: rgb(249, 159, 159);
+
+    color: white;
+    box-shadow: 0px 0px 5px 0px black;
+}
+
+.auth-button:active {
+    transform: scale(0.97);
+    transition: 250ms;
+    box-shadow: 0px 0px 0px 0px black;
+}
+.auth {
+    font-size: 1.2rem;
+    width: 200px;
+}
