@@ -14,7 +14,7 @@ label {
     font-family: 'Titillium Web';
     font-size: 0.9em;
     font-weight: bold;
-    color: var(--label-color);
+    color: black;
 
     display: grid;
     gap: 5px;

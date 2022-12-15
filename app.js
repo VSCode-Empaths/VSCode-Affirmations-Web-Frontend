@@ -1,4 +1,6 @@
 /* Imports */
+import './auth/user.js';
+
 import { createAffirmation, fetchAffirmations } from './fetch-utils.js';
 
 /* Get DOM Elements */

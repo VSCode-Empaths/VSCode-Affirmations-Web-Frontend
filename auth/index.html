@@ -1,51 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <link rel="icon" type="image/x-icon" href="/assets/alchemy-favicon.png" />
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="icon" type="image/x-icon" href="/assets/alchemy-favicon.png" />
+        <script type="module" src="auth.js"></script>
 
-    <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@1.35.7/dist/umd/supabase.min.js"></script>
-    <script type="module" src="auth.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;600&family=Titillium+Web:wght@200;400;600&display=swap"
+        />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;600&family=Titillium+Web:wght@200;400;600&display=swap">
+        <link rel="stylesheet" href="/styles/reset.css" />
+        <link rel="stylesheet" href="/styles/global.css" />
+        <link rel="stylesheet" href="/styles/form.css" />
+        <link rel="stylesheet" href="/styles/affirmations.css" />
+        <link rel="stylesheet" href="/styles/auth-page.css" />
+        <link rel="stylesheet" href="/styles/nav.css" />
+        <title>Auth</title>
+    </head>
 
-    <link rel="stylesheet" href="/styles/reset.css" />
-    <link rel="stylesheet" href="/styles/global.css" />
-    <link rel="stylesheet" href="/styles/form.css" />
-    <title>Auth</title>
-</head>
-
-<body>
-    <header class="page-header">
-        <img class="logo" src="/assets/html_css_js.png">
-        <p class="title">User Auth</p>
-    </header>
-
-    <main>
-        <form id="auth-form">
-            <h2></h2>
-            <label>
-                Email
-                <input type="email" name="email" required />
-            </label>
-            <label>
-                Password
-                <input type="password" name="password" required />
-            </label>
-            <button></button>
-            <p class="error"></p>
-            <a href=""></a>
-        </form>
-
-    </main>
-
-
-</body>
-
+    <body>
+        <header class="page-header">
+            <img class="logo" src="../assets/affirmation-logo-black.png" />
+            <p class="title">Error Affirmations</p>
+            <img class="logo" src="../assets/affirmation-logo-black.png" />
+        </header>
+        <nav>
+            <div id="menu">
+                <input id="checkbox" type="checkbox" />
+                <span></span>
+                <span></span>
+                <span></span>
+                <ul id="menu-list">
+                    <a class="auth" href="/">Add an Affirmation</a>
+                    <a class="auth" href="/creator-page">About the Creators</a>
+                </ul>
+            </div>
+        </nav>
+        <main>
+            <form id="auth-form">
+                <h2></h2>
+                <h3 class="auth-title" id="auth-title1">Using github...</h3>
+                <a
+                    id="github-button"
+                    href="https://error-affirmations.herokuapp.com/api/v1/github/login"
+                    ><img id="github-img" src="/assets/github-logo.png"
+                /></a>
+                <h3 class="auth-title" id="auth-title2">Or email and password!</h3>
+                <label>
+                    Email
+                    <input type="email" name="email" required />
+                </label>
+                <label>
+                    Password
+                    <input type="password" name="password" required />
+                </label>
+                <button id="auth-button" class="auth-button">Sign in</button>
+                <p class="error"></p>
+                <a id="create-account" href=""></a>
+            </form>
+        </main>
+    </body>
 </html>
