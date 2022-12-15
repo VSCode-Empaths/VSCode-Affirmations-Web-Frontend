@@ -23,3 +23,26 @@
     font-size: 1.2rem;
     width: 200px;
 }
+
+.hide {
+    display: none;
+}
+
+.auth-title {
+    text-align: center;
+    margin-bottom: -10px;
+}
+
+#github-button {
+    display: grid;
+    justify-self: center;
+}
+
+#github-img {
+    width: 90px;
+}
+
+#auth-form {
+    background-color: rgb(251, 231, 231);
+    border: 3px solid rgb(249, 159, 159);
+}

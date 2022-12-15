@@ -13,9 +13,12 @@ async function newGetUser() {
 /* Get DOM (getElementById and friends)*/
 const authForm = document.getElementById('auth-form');
 const authHeader = authForm.querySelector('h2');
-const authButton = authForm.querySelector('button');
-const changeType = authForm.querySelector('a');
+const authButton = document.getElementById('auth-button');
+const changeType = document.getElementById('create-account');
 const errorDisplay = authForm.querySelector('.error');
+const ghButton = document.getElementById('github-button');
+const authTitle1 = document.getElementById('auth-title1');
+const authTitle2 = document.getElementById('auth-title2');
 
 /* let state */
 let isSignIn = true;
@@ -80,9 +83,15 @@ function displayAuth() {
         authHeader.textContent = 'Sign in to your account';
         authButton.textContent = 'Sign In';
         changeType.textContent = 'Need to create an account?';
+        ghButton.classList.remove('hide');
+        authTitle1.classList.remove('hide');
+        authTitle2.classList.remove('hide');
     } else {
         authHeader.textContent = 'Create a new account';
         authButton.textContent = 'Sign Up';
         changeType.textContent = 'Already have an account?';
+        ghButton.classList.add('hide');
+        authTitle1.classList.add('hide');
+        authTitle2.classList.add('hide');
     }
 }

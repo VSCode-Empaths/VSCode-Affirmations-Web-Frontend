@@ -45,6 +45,13 @@
         <main>
             <form id="auth-form">
                 <h2></h2>
+                <h3 class="auth-title" id="auth-title1">Using github...</h3>
+                <a
+                    id="github-button"
+                    href="https://error-affirmations.herokuapp.com/api/v1/github/login"
+                    ><img id="github-img" src="/assets/github-logo.png"
+                /></a>
+                <h3 class="auth-title" id="auth-title2">Or email and password!</h3>
                 <label>
                     Email
                     <input type="email" name="email" required />
@@ -53,9 +60,9 @@
                     Password
                     <input type="password" name="password" required />
                 </label>
-                <button class="auth-button"></button>
+                <button id="auth-button" class="auth-button">Sign in</button>
                 <p class="error"></p>
-                <a href=""></a>
+                <a id="create-account" href=""></a>
             </form>
         </main>
     </body>
