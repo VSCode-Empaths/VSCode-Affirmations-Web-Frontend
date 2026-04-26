@@ -10,12 +10,13 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            - uses: actions/checkout@v2
+            - uses: actions/checkout@v4
             - name: Use Node.js 18.x
-              uses: actions/setup-node@v1
+              uses: actions/setup-node@v4
               with:
                   node-version: 18.x
-            - run: npm i eslint esm jsdom @supabase/supabase-js
+                  cache: 'npm'
+            - run: npm ci
             - run: npx eslint .
             - run: npx qunit test/index.js
               env:
