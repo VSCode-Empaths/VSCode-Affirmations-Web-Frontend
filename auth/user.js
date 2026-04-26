@@ -9,7 +9,7 @@ async function newGetUser() {
     }
 }
 
-// If there is a sign out link, attach handler for calling supabase signout
+// If there is a sign out link, call the API to clear the session cookie, then go to /auth
 const signOutLink = document.getElementById('sign-out-link');
 if (signOutLink) {
     signOutLink.addEventListener('click', () => {

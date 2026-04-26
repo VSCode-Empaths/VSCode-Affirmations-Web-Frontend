@@ -1,6 +1,7 @@
 // import services and utilities
 import { GITHUB_OAUTH_LOGIN_URL } from '../api-config.js';
 import { getUser, signInUser, signUpUser } from '../fetch-utils.js';
+import { sanitizeSameSitePath } from '../lib/same-site-redirect.js';
 
 // If on this /auth page but we have a user, it means
 // user probably navigated here by the url.
@@ -72,7 +73,7 @@ authForm.addEventListener('submit', async (e) => {
         // go back to wherever user came from...
         // check the query params for a redirect Url (page before auth redirect)
         const params = new URLSearchParams(location.search);
-        const redirectUrl = params.get('redirectUrl') || '/';
+        const redirectUrl = sanitizeSameSitePath(params.get('redirectUrl') ?? '', '/');
         location.replace(redirectUrl);
     }
 });
