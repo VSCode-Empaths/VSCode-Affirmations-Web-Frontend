@@ -1,4 +1,5 @@
 // import services and utilities
+import { GITHUB_OAUTH_LOGIN_URL } from '../api-config.js';
 import { getUser, signInUser, signUpUser } from '../fetch-utils.js';
 
 // If on this /auth page but we have a user, it means
@@ -17,6 +18,7 @@ const authButton = document.getElementById('auth-button');
 const changeType = document.getElementById('create-account');
 const errorDisplay = authForm.querySelector('.error');
 const ghButton = document.getElementById('github-button');
+ghButton.href = GITHUB_OAUTH_LOGIN_URL;
 const authTitle1 = document.getElementById('auth-title1');
 const authTitle2 = document.getElementById('auth-title2');
 
