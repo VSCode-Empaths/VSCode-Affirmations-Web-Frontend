@@ -7,10 +7,8 @@ import { createAffirmation, fetchAffirmations } from './fetch-utils.js';
 const addAffirmationForm = document.getElementById('add-affirmation-form');
 const submitButton = document.getElementById('submit-button');
 const affirmationList = document.getElementById('affirmation-list');
-const errorDisplay = document.getElementById('error-display');
 
 /* State */
-let error = null;
 let affirmations = [];
 
 /* Events */
@@ -46,15 +44,5 @@ async function displayAffirmations() {
         p.textContent = affirmation.category;
         li.append(h3, p);
         affirmationList.append(li);
-    }
-}
-
-function displayError() {
-    if (error) {
-        // eslint-disable-next-line no-console
-        console.log(error);
-        errorDisplay.textContent = error.message;
-    } else {
-        errorDisplay.textContent = '';
     }
 }

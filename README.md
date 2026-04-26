@@ -1,3 +1,37 @@
+## VS Code Affirmations (web frontend)
+
+This repo is the browser client for **Error Affirmations**: sign in (email/password or GitHub OAuth), then create and list personal affirmations against the backend API (`api-config.js` points at the deployed Fly.io service).
+
+### Run locally
+
+There is no `package.json` on `main` yet (it may land in a separate PR). Until then, serve the tree as static files:
+
+- **VS Code:** install the “Live Server” extension, then “Open with Live Server” on `index.html`, or
+- **CLI:** `npx --yes live-server` from the repo root (or any static server on the project folder).
+
+Use a real `http://localhost` origin so cookies and fetches behave like production.
+
+### Tests (QUnit)
+
+CI installs runtime deps with `npm i eslint esm jsdom` and runs `npx qunit test/index.js`. Match that locally:
+
+```bash
+npm i esm jsdom
+npx qunit test/index.js
+```
+
+When a `package.json` is added, prefer `npm test` if it is wired to the same command.
+
+### Lint (ESLint 8)
+
+```bash
+npx eslint@8 . --ext .js
+```
+
+Same as CI’s `npx eslint .` after devDependencies exist. Until `package.json` exists, use `eslint@8` explicitly so the version matches CI.
+
+---
+
 ## The Golden Rule:
 
 🦸 🦸‍♂️ `Stop starting and start finishing.` 🏁
