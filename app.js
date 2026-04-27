@@ -63,8 +63,9 @@ addAffirmationForm.addEventListener('submit', async (e) => {
 /* Display Functions */
 function isOwner(affirmation) {
     if (!currentUser) return false;
-    if (currentUser.login) return affirmation.github_user_id == currentUser.id;
-    return affirmation.user_id == currentUser.id;
+    if (currentUser.login)
+        return String(affirmation.github_user_id) === String(currentUser.id);
+    return String(affirmation.user_id) === String(currentUser.id);
 }
 
 function displayAffirmations() {
@@ -101,7 +102,7 @@ async function handleDelete(id, li) {
         displayError();
         return;
     }
-    affirmations = affirmations.filter((a) => a.id != id);
+    affirmations = affirmations.filter((a) => String(a.id) !== String(id));
     li.remove();
 }
 
