@@ -90,6 +90,27 @@ input[type='text'] {
     padding-top: 0.4rem;
 }
 
+.affirmation-item__delete {
+    align-self: flex-end;
+    margin-top: 0.4rem;
+    padding: 2px 10px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    background-color: rgb(249, 159, 159);
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    border-radius: 4px;
+    transition: 150ms;
+}
+
+.affirmation-item__delete:hover {
+    background-color: rgb(230, 80, 80);
+    color: white;
+}
+
+.affirmation-item__delete:active {
+    transform: scale(0.96);
+}
+
 #submit-button {
     margin-top: 5px;
     cursor: pointer;

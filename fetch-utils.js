@@ -165,3 +165,16 @@ export async function createAffirmation(text, category_id) {
         return { ok: false, message: (e && e.message) || 'Network error' };
     }
 }
+
+export async function deleteAffirmation(id) {
+    try {
+        const res = await fetch(`${API_BASE}/api/v1/affirmations/${id}`, {
+            method: 'DELETE',
+            headers: JSON_HEADERS,
+            credentials: 'include',
+        });
+        return await readResponse(res);
+    } catch (e) {
+        return { ok: false, message: (e && e.message) || 'Network error' };
+    }
+}
