@@ -1,5 +1,8 @@
-# Serve from `public/` after `npm run build`. Fixes empty deploy when Netlify’s UI expects
-# “Publish directory” = public (common default) while static files lived only at repo root.
+# Pure static site: HTML/CSS/JS at repo root. Netlify only uploads `publish`.
+# In the Netlify UI: leave “Build command” empty OR match this file; set “Publish directory” to `.`
+# if it isn’t picked up from here.
+#
+# If Netlify errors because package.json exists and it tries `npm run build`, add in the UI:
+# Build command: `true` (POSIX no-op — nothing is compiled).
 [build]
-  command = "npm run build"
-  publish = "public"
+  publish = "."

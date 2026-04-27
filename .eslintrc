@@ -1,5 +1,5 @@
 {
-    "ignorePatterns": ["public", "node_modules", "playwright-report", "test-results"],
+    "ignorePatterns": ["node_modules", "playwright-report", "test-results"],
     "extends": "eslint:recommended",
     "parserOptions": {
         "ecmaVersion": 2022,

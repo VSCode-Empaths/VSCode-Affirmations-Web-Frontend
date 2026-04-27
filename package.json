@@ -3,7 +3,6 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "node scripts/netlify-build.mjs",
     "lint": "eslint .",
     "test": "qunit test/index.js"
   },
