@@ -18,8 +18,8 @@ const affirmationList = document.getElementById('affirmation-list');
 const errorDisplay = document.getElementById('error-display');
 
 /* State */
-let error = null;
 let affirmations = [];
+let error = null;
 
 /* Events */
 window.addEventListener('load', async () => {
