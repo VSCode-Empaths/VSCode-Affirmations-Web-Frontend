@@ -1,7 +1,7 @@
 /* Imports */
 import './auth/user.js';
 
-import { createAffirmation, fetchAffirmations } from './fetch-utils.js';
+import { createAffirmation, deleteAffirmation, fetchAffirmations, getUser } from './fetch-utils.js';
 
 /** Display labels for `category_id` from GET /api/v1/categories (values on `<select name="category">`). */
 const CATEGORY_LABELS = {
@@ -19,19 +19,21 @@ const errorDisplay = document.getElementById('error-display');
 
 /* State */
 let affirmations = [];
+let currentUser = null;
 let error = null;
 
 /* Events */
 window.addEventListener('load', async () => {
     affirmations = [];
-    const result = await fetchAffirmations();
-    if (!result.ok) {
-        error = { message: result.message };
+    const [userResult, affirmationsResult] = await Promise.all([getUser(), fetchAffirmations()]);
+    currentUser = userResult || null;
+    if (!affirmationsResult.ok) {
+        error = { message: affirmationsResult.message };
         displayError();
         return;
     }
     error = null;
-    affirmations = Array.isArray(result.data) ? result.data : [];
+    affirmations = Array.isArray(affirmationsResult.data) ? affirmationsResult.data : [];
     displayError();
     displayAffirmations();
 });
@@ -59,6 +61,12 @@ addAffirmationForm.addEventListener('submit', async (e) => {
     }
 });
 /* Display Functions */
+function isOwner(affirmation) {
+    if (!currentUser) return false;
+    if (currentUser.login) return affirmation.github_user_id == currentUser.id;
+    return affirmation.user_id == currentUser.id;
+}
+
 function displayAffirmations() {
     affirmationList.innerHTML = '';
     for (const affirmation of affirmations) {
@@ -75,8 +83,26 @@ function displayAffirmations() {
         categoryEl.textContent =
             CATEGORY_LABELS[id] || affirmation.category || id || '—';
         li.append(textEl, categoryEl);
+        if (isOwner(affirmation)) {
+            const deleteBtn = document.createElement('button');
+            deleteBtn.className = 'affirmation-item__delete';
+            deleteBtn.textContent = 'Delete';
+            deleteBtn.addEventListener('click', () => handleDelete(affirmation.id, li));
+            li.append(deleteBtn);
+        }
         affirmationList.append(li);
     }
+}
+
+async function handleDelete(id, li) {
+    const result = await deleteAffirmation(id);
+    if (!result.ok) {
+        error = { message: result.message };
+        displayError();
+        return;
+    }
+    affirmations = affirmations.filter((a) => a.id != id);
+    li.remove();
 }
 
 function displayError() {
