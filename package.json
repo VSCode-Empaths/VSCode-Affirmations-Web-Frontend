@@ -1,6 +1,7 @@
 {
   "name": "vscode-affirmations-web-frontend",
   "private": true,
+  "type": "module",
   "scripts": {
     "lint": "eslint .",
     "test": "qunit test/index.js"
