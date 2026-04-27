@@ -1,5 +1,7 @@
 // import services and utilities
+import { GITHUB_OAUTH_LOGIN_URL } from '../api-config.js';
 import { getUser, signInUser, signUpUser } from '../fetch-utils.js';
+import { sameSiteRedirectPath } from '../lib/same-site-redirect.js';
 
 // If on this /auth page but we have a user, it means
 // user probably navigated here by the url.
@@ -7,7 +9,9 @@ import { getUser, signInUser, signUpUser } from '../fetch-utils.js';
 newGetUser();
 async function newGetUser() {
     const user = await getUser();
-    if (user) location.replace('/');
+    if (user) {
+        location.replace('/');
+    }
 }
 
 /* Get DOM (getElementById and friends)*/
@@ -17,6 +21,7 @@ const authButton = document.getElementById('auth-button');
 const changeType = document.getElementById('create-account');
 const errorDisplay = authForm.querySelector('.error');
 const ghButton = document.getElementById('github-button');
+ghButton.href = GITHUB_OAUTH_LOGIN_URL;
 const authTitle1 = document.getElementById('auth-title1');
 const authTitle2 = document.getElementById('auth-title2');
 
@@ -70,7 +75,7 @@ authForm.addEventListener('submit', async (e) => {
         // go back to wherever user came from...
         // check the query params for a redirect Url (page before auth redirect)
         const params = new URLSearchParams(location.search);
-        const redirectUrl = params.get('redirectUrl') || '/';
+        const redirectUrl = sameSiteRedirectPath(params.get('redirectUrl'));
         location.replace(redirectUrl);
     }
 });

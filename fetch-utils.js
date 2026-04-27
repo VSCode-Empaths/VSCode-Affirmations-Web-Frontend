@@ -1,102 +1,144 @@
-const BASE_URL = 'https://error-affirmations.herokuapp.com';
+import { API_BASE } from './api-config.js';
+
+const JSON_HEADERS = {
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+};
+
+/**
+ * @typedef {{ ok: true, data: * }} FetchOk
+ * @typedef {{ ok: false, message: string, status?: number }} FetchErr
+ * UI-safe result for affirmation helpers: success carries payload in `data`, failure in `message`.
+ */
+
+/**
+ * Read response: verify res.ok, parse JSON when present, tolerate non-JSON error bodies.
+ * @param {Response} res
+ * @returns {Promise<FetchOk|FetchErr>}
+ */
+async function readResponse(res) {
+    const text = await res.text();
+    let body = null;
+    if (text) {
+        try {
+            body = JSON.parse(text);
+        } catch (parseErr) {
+            body = { message: text };
+        }
+    }
+    if (!res.ok) {
+        const message =
+            (body &&
+                (body.message ||
+                    (typeof body.error === 'string'
+                        ? body.error
+                        : body.error && body.error.message))) ||
+            res.statusText ||
+            'Request failed';
+        return { ok: false, message, status: res.status, data: body };
+    }
+    return { ok: true, data: body };
+}
 
 /* Auth related functions */
 export async function getUser() {
-    const resp = await fetch(`${BASE_URL}/api/v1/users/me`, {
-        method: 'GET',
-        headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-        },
-        credentials: 'include',
-    });
-    if (resp.ok) {
-        const user = await resp.json();
-        return user;
+    try {
+        const resp = await fetch(`${API_BASE}/api/v1/users/me`, {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include',
+        });
+        const result = await readResponse(resp);
+        if (!result.ok) {
+            return undefined;
+        }
+        return result.data;
+    } catch (e) {
+        return undefined;
     }
 }
 
 export async function signUpUser(email, password) {
-    const resp = await fetch(`${BASE_URL}/api/v1/users`, {
-        method: 'POST',
-        headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-        credentials: 'include',
-    });
+    try {
+        const resp = await fetch(`${API_BASE}/api/v1/users`, {
+            method: 'POST',
+            headers: JSON_HEADERS,
+            body: JSON.stringify({ email, password }),
+            credentials: 'include',
+        });
+        const result = await readResponse(resp);
+        if (!result.ok) {
+            return { error: { message: result.message } };
+        }
+        return result.data;
+    } catch (e) {
+        return { error: { message: (e && e.message) || 'Network error' } };
+    }
+}
 
-    const data = await resp.json();
-    if (!resp.ok) {
-        // eslint-disable-next-line no-console
-        console.error(data.message);
-        data.error = data.message;
-    }
-    return data;
-}
 export async function signInUser(email, password) {
-    const resp = await fetch(`${BASE_URL}/api/v1/users/sessions`, {
-        method: 'POST',
-        headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-        credentials: 'include',
-    });
-    const data = await resp.json();
-    if (!resp.ok) {
-        // eslint-disable-next-line no-console
-        console.error(data.message);
-        data.error = data.message;
+    try {
+        const resp = await fetch(`${API_BASE}/api/v1/users/sessions`, {
+            method: 'POST',
+            headers: JSON_HEADERS,
+            body: JSON.stringify({ email, password }),
+            credentials: 'include',
+        });
+        const result = await readResponse(resp);
+        if (!result.ok) {
+            return { error: { message: result.message } };
+        }
+        return result.data;
+    } catch (e) {
+        return { error: { message: (e && e.message) || 'Network error' } };
     }
-    return data;
 }
+
 export async function signOutUser() {
-    const resp = await fetch(`${BASE_URL}/api/v1/users/sessions`, {
-        method: 'DELETE',
-        credentials: 'include',
-    });
-    if (resp.ok) {
-        location.replace('/auth');
+    try {
+        const resp = await fetch(`${API_BASE}/api/v1/users/sessions`, {
+            method: 'DELETE',
+            credentials: 'include',
+        });
+        if (resp.ok) {
+            location.replace('/auth');
+        }
+    } catch (e) {
+        // optional: could surface; sign-out is best-effort
     }
 }
 
 /* Data functions */
 export async function fetchAffirmations() {
-    const res = await fetch(`${BASE_URL}/api/v1/affirmations`, {
-        method: 'GET',
-        headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-        },
-        credentials: 'include',
-    });
-    const data = await res.json();
-    if (res.ok) {
-        return data;
-    } else {
-        // eslint-disable-next-line no-console
-        console.error(data.message);
+    try {
+        const res = await fetch(`${API_BASE}/api/v1/affirmations`, {
+            method: 'GET',
+            headers: JSON_HEADERS,
+            credentials: 'include',
+        });
+        return await readResponse(res);
+    } catch (e) {
+        return { ok: false, message: (e && e.message) || 'Network error' };
     }
 }
 
+/**
+ * POST /api/v1/affirmations — body matches backend: { text: string, category_id: string }.
+ * category_id is the string id from GET /api/v1/categories (e.g. "1" for daily).
+ */
 export async function createAffirmation(text, category_id) {
-    const res = await fetch(`${BASE_URL}/api/v1/affirmations`, {
-        method: 'POST',
-        headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ text, category_id }),
-        credentials: 'include',
-    });
-    const data = await res.json();
-    if (res.ok) {
-        return data;
-    } else {
-        // eslint-disable-next-line no-console
-        console.error(data.message);
+    try {
+        const res = await fetch(`${API_BASE}/api/v1/affirmations`, {
+            method: 'POST',
+            headers: JSON_HEADERS,
+            body: JSON.stringify({ text, category_id }),
+            credentials: 'include',
+        });
+        return await readResponse(res);
+    } catch (e) {
+        return { ok: false, message: (e && e.message) || 'Network error' };
     }
 }
