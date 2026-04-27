@@ -1,3 +1,6 @@
-# Used when the site is linked in Netlify. “Publish directory” = repo root (or set the same in the UI).
+# Static site: `index.html` lives at the repo root. Netlify’s UI must not override
+# “Publish directory” to `dist/`, `build/`, or `public/` unless you add those folders.
 [build]
+  # Fails the build (with a clear log) if the wrong folder is being published, instead of a silent empty 404.
+  command = "test -f index.html && test -f app.js"
   publish = "."
