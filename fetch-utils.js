@@ -6,6 +6,28 @@ const JSON_HEADERS = {
 };
 
 /**
+ * Derive reasonable display names from the email local-part so sign-up can send
+ * firstName/lastName without extra form fields (backend expects these fields).
+ * @param {string} email
+ * @returns {{ firstName: string, lastName: string }}
+ */
+function displayNamesFromEmail(email) {
+    const raw = String(email || '').split('@')[0].trim();
+    const local = raw || 'user';
+    const tokens = local.split(/[-._+]+/).filter(Boolean);
+    const title = (s) =>
+        s ? s.charAt(0).toUpperCase() + s.slice(1).toLowerCase() : '';
+    if (tokens.length >= 2) {
+        return {
+            firstName: title(tokens[0]),
+            lastName: title(tokens.slice(1).join(' ')),
+        };
+    }
+    const one = tokens[0] || local;
+    return { firstName: title(one), lastName: '' };
+}
+
+/**
  * @typedef {{ ok: true, data: * }} FetchOk
  * @typedef {{ ok: false, message: string, status?: number }} FetchErr
  * UI-safe result for affirmation helpers: success carries payload in `data`, failure in `message`.
@@ -63,10 +85,11 @@ export async function getUser() {
 
 export async function signUpUser(email, password) {
     try {
+        const { firstName, lastName } = displayNamesFromEmail(email);
         const resp = await fetch(`${API_BASE}/api/v1/users`, {
             method: 'POST',
             headers: JSON_HEADERS,
-            body: JSON.stringify({ email, password }),
+            body: JSON.stringify({ email, password, firstName, lastName }),
             credentials: 'include',
         });
         const result = await readResponse(resp);
@@ -104,7 +127,7 @@ export async function signOutUser() {
             credentials: 'include',
         });
         if (resp.ok) {
-            location.replace('/auth');
+            location.replace('/auth/');
         }
     } catch (e) {
         // optional: could surface; sign-out is best-effort
