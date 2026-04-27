@@ -66,13 +66,15 @@ function displayAffirmations() {
             continue;
         }
         const li = document.createElement('li');
-        const h3 = document.createElement('p');
-        const p = document.createElement('p');
-        h3.textContent = affirmation.text;
+        const textEl = document.createElement('p');
+        const categoryEl = document.createElement('p');
+        textEl.className = 'affirmation-item__text';
+        categoryEl.className = 'affirmation-item__category';
+        textEl.textContent = affirmation.text;
         const id = affirmation.category_id;
-        p.textContent =
+        categoryEl.textContent =
             CATEGORY_LABELS[id] || affirmation.category || id || '—';
-        li.append(h3, p);
+        li.append(textEl, categoryEl);
         affirmationList.append(li);
     }
 }
