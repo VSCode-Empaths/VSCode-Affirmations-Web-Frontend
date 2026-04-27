@@ -1,7 +1,5 @@
-# Netlify: publish the repo root (where index.html lives). If the UI “Publish directory”
-# is not `.`, the deploy can look empty and every URL 404s.
-# Build: Netlify + npm will run `npm run build` when package.json exists; a missing script
-# fails the build and leaves the site on an old or empty deploy.
+# Serve from `public/` after `npm run build`. Fixes empty deploy when Netlify’s UI expects
+# “Publish directory” = public (common default) while static files lived only at repo root.
 [build]
   command = "npm run build"
-  publish = "."
+  publish = "public"

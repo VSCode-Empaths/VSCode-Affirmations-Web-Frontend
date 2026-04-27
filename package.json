@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "node -e \"const fs=require('fs'); for (const f of ['index.html','app.js','styles/reset.css']) fs.accessSync(f)\"",
+    "build": "node scripts/netlify-build.mjs",
     "lint": "eslint .",
     "test": "qunit test/index.js"
   },
