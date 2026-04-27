@@ -1,0 +1,3 @@
+# Used when the site is linked in Netlify. “Publish directory” = repo root (or set the same in the UI).
+[build]
+  publish = "."

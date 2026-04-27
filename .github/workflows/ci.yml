@@ -1,0 +1,26 @@
+# Lint + unit tests. Deploys: connect this repo in the Netlify UI (no secrets here).
+name: CI
+
+on:
+    push:
+    pull_request:
+
+concurrency:
+    group: ci-${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: true
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - name: Use Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 20.x
+                  cache: npm
+            - run: npm ci
+            - run: npm run lint
+            - run: npm test
+              env:
+                  CI: true

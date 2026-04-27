@@ -11,6 +11,9 @@ This repo is plain HTML/CSS/JS. Serve the project root so module imports and pat
 
 ## Checks
 
+- **CI (GitHub Actions):** `npm run lint` and `npm test` on every push and pull request.
+- **Deploy (Netlify):** in [Netlify](https://app.netlify.com), *Add new site* → *Import from Git* → pick this repo. Set **Publish directory** to the repo root (`.`). No build step is required for this static app; Netlify will deploy on every push to your production branch. This file’s `netlify.toml` can fill in **Publish** for you.
+
 - **ESLint (recommended):** `npx eslint@8 .`
 - **Tests (QUnit + jsdom):** use **Node 18+** (QUnit 3 expects modern Node). From the repo root:
 
