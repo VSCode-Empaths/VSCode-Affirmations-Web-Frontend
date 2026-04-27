@@ -12,14 +12,10 @@ This repo is plain HTML/CSS/JS. Serve the project root so module imports and pat
 ## Checks
 
 - **ESLint (recommended):** `npx eslint@8 .`
-- **Tests (QUnit + jsdom):** use **Node 18+** (QUnit 3 expects modern Node). From the repo root:
+- **Unit (QUnit):** `npm test` (Node 18+; same as `npx qunit test/index.js`).
+- **Browser integration (Playwright + stubbed API):** after `npm ci`, run `npx playwright install chromium` once, then `npm run test:integration`. CI runs these against a local static server; the Fly API is not called.
 
-  ```bash
-  nvm use 18   # if you use nvm; otherwise any Node 18+ install
-  npx qunit test/index.js
-  ```
-
-  If you only have an older Node, install 18+ or run tests in CI; the QUnit suite may not run correctly on Node 16 and below.
+  Use **Node 18+** for both QUnit and Playwright. On Node 22, QUnit may still fail (known `esm` loader quirk); use Node 18/20 to match CI.
 
 ## The Golden Rule
 

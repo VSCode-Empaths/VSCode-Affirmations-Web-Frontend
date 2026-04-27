@@ -21,3 +21,9 @@ jobs:
             - run: npx qunit test/index.js
               env:
                   CI: true
+            - name: Playwright (Chromium)
+              run: npx playwright install --with-deps chromium
+            - name: Integration tests
+              run: npx playwright test
+              env:
+                  CI: true
