@@ -1,6 +1,7 @@
-# Static site: `index.html` lives at the repo root. Netlify’s UI must not override
-# “Publish directory” to `dist/`, `build/`, or `public/` unless you add those folders.
+# Netlify: publish the repo root (where index.html lives). If the UI “Publish directory”
+# is not `.`, the deploy can look empty and every URL 404s.
+# Build: Netlify + npm will run `npm run build` when package.json exists; a missing script
+# fails the build and leaves the site on an old or empty deploy.
 [build]
-  # Fails the build (with a clear log) if the wrong folder is being published, instead of a silent empty 404.
-  command = "test -f index.html && test -f app.js"
+  command = "npm run build"
   publish = "."
