@@ -56,13 +56,19 @@ authForm.addEventListener('submit', async (e) => {
 
     // get the form data with email and password
     const formData = new FormData(authForm);
+    const email = formData.get('email');
+    const password = formData.get('password');
 
     let response = null;
 
     if (isSignIn) {
-        response = await signInUser(formData.get('email'), formData.get('password'));
+        response = await signInUser(email, password);
     } else {
-        response = await signUpUser(formData.get('email'), formData.get('password'));
+        response = await signUpUser(email, password);
+        // Registration does not set a session cookie; sign in immediately so / loads as authenticated.
+        if (!response.error) {
+            response = await signInUser(email, password);
+        }
     }
 
     const error = response.error;
